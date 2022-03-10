@@ -20,5 +20,8 @@ services:
         - 8000:8000
     depends_on:
         - db
-    command: bash -c 'while !</dev/tcp/db/5432; do sleep 1; done; uwsgi /opt/healthchecks/docker/uwsgi.ini'
+    entrypoint: ["venv/bin/peek-entrypoint", "-v", "--"]
+    command: ["gunicorn", "hc.wsgi:application", "-c", "/opt/healthchecks/docker/gunicorn.config.py"]
+    #command: while !</dev/tcp/db/5432; do sleep 1; done; uwsgi /opt/healthchecks/docker/uwsgi.ini
+    privileged: true
 

@@ -9,3 +9,5 @@ requests==2.27.1
 segno==1.4.1
 statsd==3.3.0
 whitenoise==6.0.0
+opentelemetry-sdk
+opentelemetry-instrumentation-django
